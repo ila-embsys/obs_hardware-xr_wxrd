@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<services>
+  <service name="obs_scm" mode="manual">
+    <param name="scm">git</param>
+    <param name="url">https://gitlab.freedesktop.org/xrdesktop/wxrd.git</param>
+    <!-- The latest revision compatible with xrdesktop-16 -->
+    <param name="revision">80f40e308612662ea80ae77b124ba42de9d7d13f</param>
+    <!-- <param name="versionformat">@PARENT_TAG@+@TAG_OFFSET@</param> -->
+    <!-- <param name="versionrewrite-pattern">(.*)\+0</param>
+    <param name="versionrewrite-replacement">\1</param> -->
+    <param name="versionformat">g%h</param> 
+    <param name="without-version">true</param>
+<!--    <param name="changesgenerate">enable</param> -->
+  <!-- Exclude to use system dependency -->
+  <param name="exclude">subprojects/wlroots**</param>
+  </service>
+  <service name="tar" mode="buildtime"/>
+  <service name="recompress" mode="buildtime">
+    <param name="file">*.tar</param>
+    <param name="compression">bz2</param>
+  </service>
+  <service name="set_version" mode="manual" />
+</services>
+
